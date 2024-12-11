@@ -313,14 +313,6 @@ class _LoginScreenState extends State<LoginScreen> {
           onTap: _toggleLanguage,
           label: widget.currentLocale.languageCode == 'en' ? 'RU' : 'EN',
         ),
-        const SizedBox(width: 20),
-        _socialLoginButton(
-          icon: CupertinoIcons.person,
-          onTap: () {
-            // Implement Facebook login here
-          },
-          label: 'FB',
-        ),
       ],
     ).animate().fadeIn(duration: 600.ms);
   }
