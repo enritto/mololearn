@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "368779658247",
+    "project_id": "molodost-mololearn",
+    "storage_bucket": "molodost-mololearn.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368779658247:android:afbd6b85eec22efbc156a2",
+        "android_client_info": {
+          "package_name": "com.molodost.mololearn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRVI5Y7Zzsq929IU4Q2XaQpT2e1qGGASw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
