@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.of(context).pushReplacement(
           CupertinoPageRoute(
             builder: (_) => MainScreen(
-              username: userCredential.user!.email?.split('@')[0] ?? 'User',
+              username: userCredential.user!.email?.split('@')[0] ?? 'User ',
             )
           )
         );
@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: CupertinoColors.systemBackground,
+      backgroundColor: Color(0xFFF8F0E6),
       navigationBar: CupertinoNavigationBar(
         trailing: CupertinoButton(
           padding: EdgeInsets.zero,
@@ -211,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: CupertinoButton(
                     child: Text(
                       AppLocalizations.of(context)!.forgotPassword,
-                      style: TextStyle(color: CupertinoColors.activeBlue),
+                      style: TextStyle(color: Color(0xFF7A7170)),
                     ),
                     onPressed: _handleForgotPassword,
                   ),
@@ -224,7 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: CupertinoButton(
                     child: Text(
                       AppLocalizations.of(context )!.createAccount,
-                      style: TextStyle(color: CupertinoColors.activeBlue),
+                      style: TextStyle(color: Color(0xFF7A7170)),
                     ),
                     onPressed: _navigateToRegistration,
                   ),
@@ -234,6 +234,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 
                 // Social Login Options
                 _buildSocialLogins(),
+                
+                const SizedBox(height: 20),
+                
+                // Logo
+                Center(
+                  child: Image.asset(
+                    'assets/molodost.png',
+                    width: 200,
+                    height: 200,
+                  ),
+                ),
+                
+                const SizedBox(height: 20),
               ],
             ),
           ),
@@ -255,10 +268,6 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Icon(prefixIcon, color: CupertinoColors.systemGrey),
       ),
       padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-      decoration: BoxDecoration(
-        border: Border.all(color: CupertinoColors.systemGrey4),
-        borderRadius: BorderRadius.circular(12),
-      ),
     );
   }
 
@@ -272,10 +281,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
       obscureText: _isObscured,
-      decoration: BoxDecoration(
-        border: Border.all(color: CupertinoColors.systemGrey4),
-        borderRadius: BorderRadius.circular(12),
-      ),
       suffix: GestureDetector(
         onTap: () {
           setState(() {
@@ -294,15 +299,22 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildLoginButton() {
-    return CupertinoButton(
-      color: CupertinoColors.activeBlue,
-      child: Text(
-        AppLocalizations.of(context)!.login,
-        style: const TextStyle(color: CupertinoColors.white),
+  return Center(
+    child: SizedBox(
+      width: 100, // or any other width you want
+      height: 40, // or any other height you want
+      child: CupertinoButton(
+        padding: const EdgeInsets.all(0), // remove default padding
+        color: Color(0xFF7A7170),
+        child: Text(
+          AppLocalizations.of(context)!.login,
+          style: const TextStyle(color: Color(0xFFF8F0E6)),
+        ),
+        onPressed: _isLoading ? null : _handleLogin,
       ),
-      onPressed: _isLoading ? null : _handleLogin,
-    );
-  }
+    ),
+  );
+}
 
   Widget _buildSocialLogins() {
     return Row(
@@ -324,7 +336,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: CupertinoColors.systemGrey4),
+        border: Border.all(color: Color(0xFF7A7170)),
         borderRadius: BorderRadius.circular(12),
       ),
       child: CupertinoButton(

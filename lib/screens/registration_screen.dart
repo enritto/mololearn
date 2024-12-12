@@ -137,7 +137,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     // If email verification is sent, show verification screen
     if (_isEmailSent) {
       return CupertinoPageScaffold(
-        backgroundColor: CupertinoColors.systemBackground,
+        backgroundColor: Color(0xFFF8F0E6),
         navigationBar: CupertinoNavigationBar(
           middle: Text(AppLocalizations.of(context)!.verifyEmail),
           trailing: CupertinoButton(
@@ -161,7 +161,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Icon(
                   CupertinoIcons.mail_solid, 
                   size: 100, 
-                  color: CupertinoColors.activeBlue
+                  color: Color(0xFF7A7170)
                 ),
                 const SizedBox(height: 20),
                 Text(
@@ -169,7 +169,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: CupertinoColors.black,
+                    color: Color(0xFF7A7170),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -207,7 +207,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
     // Original registration screen
     return CupertinoPageScaffold(
-      backgroundColor: CupertinoColors.systemBackground,
+      backgroundColor: Color(0xFFF8F0E6),
       navigationBar: CupertinoNavigationBar(
         middle: Text(AppLocalizations.of(context)!.createAccount),
         trailing: CupertinoButton(
@@ -236,7 +236,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.bold,
-                    color: CupertinoColors.black,
+                    color: Color(0xFF7A7170),
                   ),
                 ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.5),
                 
@@ -281,7 +281,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   child: CupertinoButton(
                     child: Text(
                       AppLocalizations.of(context)!.alreadyHaveAnAccount,
-                      style: TextStyle(color: CupertinoColors.activeBlue),
+                      style: TextStyle(color: Color(0xFF7A7170)),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -310,10 +310,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: Icon(prefixIcon, color: CupertinoColors.systemGrey),
       ),
       obscureText: isPassword ? _isObscured : false,
-      decoration: BoxDecoration(
-        color: CupertinoColors.systemGrey6,
-        borderRadius: BorderRadius.circular(12),
-      ),
       style: const TextStyle(fontSize: 16),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
     );
@@ -344,10 +340,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       ),
       obscureText: _isObscured,
-      decoration: BoxDecoration(
-        color: CupertinoColors.systemGrey6,
-        borderRadius: BorderRadius.circular(12),
-      ),
       style: const TextStyle(fontSize: 16),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
     ).animate().fadeIn(duration: 600.ms).slideX(begin: 0.5);
@@ -378,10 +370,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       ),
       obscureText: _isObscured,
-      decoration: BoxDecoration(
-        color: CupertinoColors.systemGrey6,
-        borderRadius: BorderRadius.circular(12),
-      ),
       style: const TextStyle(fontSize: 16),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
     ).animate().fadeIn(duration: 600.ms).slideX(begin: 0.5);
