@@ -48,15 +48,15 @@ class _ProfileTabState extends State<ProfileTab> with SingleTickerProviderStateM
           : [
               BoxShadow(
                 color: _shadowColorDark.withOpacity(0.2),
-                offset: const Offset(4, 4),
-                blurRadius: 6,
-                spreadRadius: 1,
+                offset: const Offset(4, 6),
+                blurRadius: 8,
+                spreadRadius: 2,
               ),
               BoxShadow(
-                color: _shadowColorLight,
-                offset: const Offset(-4, -4),
-                blurRadius: 6,
-                spreadRadius: 1,
+                color: _shadowColorLight.withOpacity(0.7),
+                offset: const Offset(-4, -6),
+                blurRadius: 8,
+                spreadRadius: 2,
               ),
             ],
     );
@@ -124,8 +124,23 @@ class _ProfileTabState extends State<ProfileTab> with SingleTickerProviderStateM
       onTap: _toggleLanguage,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: _neomorphicDecoration(
+        decoration: BoxDecoration(
+          color: _backgroundColor,
           borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: _shadowColorDark.withOpacity(0.2),
+              offset: const Offset(1, 1),
+              blurRadius: 3,
+              spreadRadius: 1,
+            ),
+            BoxShadow(
+              color: _shadowColorLight,
+              offset: const Offset(-1, -1),
+              blurRadius: 3,
+              spreadRadius: 1,
+            ),
+          ],
         ),
         child: Text(
           LocaleProvider.of(context).locale.languageCode.toUpperCase() == 'RU' ? 'EN' : 'RU',

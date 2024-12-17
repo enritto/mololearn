@@ -156,8 +156,23 @@ Widget _buildTabItem({
           color: _backgroundColor,
           shape: BoxShape.circle,
           boxShadow: isSelected
-              ? null
+              ? [
+                  // Inner shadow when pressed (lowered effect)
+                  BoxShadow(
+                    color: _shadowColorDark.withOpacity(0.4),
+                    offset: const Offset(-2, -2),
+                    blurRadius: 2,
+                    spreadRadius: 1,
+                  ),
+                  BoxShadow(
+                    color: _shadowColorLight.withOpacity(0.7),
+                    offset: const Offset(2, 2),
+                    blurRadius: 2,
+                    spreadRadius: 1,
+                  ),
+                ]
               : [
+                  // Raised effect when not selected
                   BoxShadow(
                     color: _shadowColorDark.withOpacity(0.3),
                     offset: const Offset(3, 3),
