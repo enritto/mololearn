@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '368779658247',
     projectId: 'molodost-mololearn',
     storageBucket: 'molodost-mololearn.firebasestorage.app',
+    iosClientId: '368779658247-vrav6knt5951jivfsmsn90tnhctq920a.apps.googleusercontent.com',
     iosBundleId: 'com.example.mololearn',
   );
 
@@ -72,6 +73,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '368779658247',
     projectId: 'molodost-mololearn',
     storageBucket: 'molodost-mololearn.firebasestorage.app',
+    iosClientId: '368779658247-vrav6knt5951jivfsmsn90tnhctq920a.apps.googleusercontent.com',
     iosBundleId: 'com.example.mololearn',
   );
 
@@ -83,4 +85,5 @@ class DefaultFirebaseOptions {
     authDomain: 'molodost-mololearn.firebaseapp.com',
     storageBucket: 'molodost-mololearn.firebasestorage.app',
   );
+
 }

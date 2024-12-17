@@ -37,5 +37,102 @@
     "resendVerificationEmail": "Отправить письмо повторно",
     "verificationEmailResent": "Письмо для подтверждения отправлено повторно",
     "failedToResendVerificationEmail": "Не удалось отправить письмо для подтверждения",
-    "success": "Успешно"
+    "success": "Успешно",
+    "coursesTab": "Курсы",
+    "feedTab": "Новости",
+    "profileTab": "Профиль",
+    "profile": "Профиль",
+    "edit": "Изменить",
+    "save": "Сохранить",
+    "enterYourSpecialty": "Введите вашу специализацию",
+    "writeAboutYourself": "Напишите что-нибудь о себе",
+    "coursesCompleted": "Завершено\nкурсов",
+    "overallProgress": "Общий\nпрогресс",
+    "certificatesEarned": "Получено\nсертификатов",
+    "recentAchievements": "Последние достижения",
+    "completeFirstCourse": "Завершите первый курс, чтобы получить достижения!",
+    "myCourses": "Мои курсы",
+    "cosmetologyBasics": "Основы косметологии",
+    "cosmetologyDesc": "Фундаментальные техники современной косметологии",
+    "medicalAnatomy": "Медицинская анатомия",
+    "anatomyDesc": "Детальная анатомия человека для медицинских работников",
+    "category": "Категория",
+    "progress": "Прогресс",
+    "latestNews": "Последние новости",
+    "newAdvances": "Новые достижения в косметологии",
+    "advancesDesc": "Узнайте о последних трендах и техниках в области.",
+    "healthTips": "Советы экспертов по здоровью",
+    "tipsDesc": "Узнайте, как поддерживать здоровый образ жизни с советами экспертов.",
+    "currentCourses": "Текущие курсы",
+    "@currentCourses": {
+        "description": "Label for current courses section in profile"
+    },
+    "achievements": "Достижения",
+    "@achievements": {
+        "description": "Label for achievements section in profile"
+    },
+    "achievementFirstCourse": "Первый курс пройден",
+    "@achievementFirstCourse": {
+        "description": "Achievement for completing first course"
+    },
+    "achievementPerfectScore": "Отличный результат",
+    "@achievementPerfectScore": {
+        "description": "Achievement for getting perfect score"
+    },
+    "achievementEarlyBird": "Ранняя пташка",
+    "@achievementEarlyBird": {
+        "description": "Achievement for early participation"
+    },
+    "logout": "Выйти",
+    "@logout": {
+        "description": "Label for logout button"
+    },
+    "logoutConfirmTitle": "Подтверждение выхода",
+    "@logoutConfirmTitle": {
+        "description": "Title for logout confirmation dialog"
+    },
+    "logoutConfirmMessage": "Вы уверены, что хотите выйти?",
+    "@logoutConfirmMessage": {
+        "description": "Message for logout confirmation dialog"
+    },
+    "cancel": "Отмена",
+    "@cancel": {
+        "description": "Label for cancel button"
+    },
+    "confirm": "Подтвердить",
+    "@confirm": {
+        "description": "Label for confirm button"
+    },
+    "@_EXISTING_STRINGS": {},
+    
+    "editYourProfile": "Редактирование профиля",
+    "photoUpdated": "Фото успешно обновлено",
+    "failedToUpdatePhoto": "Не удалось обновить фото",
+    "choosePhoto": "Выбрать фото",
+    "takePhoto": "Сделать фото",
+    "removePhoto": "Удалить фото",
+    "personalInfo": "Личная информация",
+    "aboutMe": "О себе",
+    "memberSince": "Участник с {date}",
+    "updateProfile": "Обновить профиль",
+    "profileUpdated": "Профиль успешно обновлен",
+    "failedToUpdateProfile": "Не удалось обновить профиль",
+    "discardChanges": "Отменить изменения?",
+    "discardChangesMessage": "Вы уверены, что хотите отменить изменения?",
+    "discard": "Отменить",
+    "keep": "Продолжить редактирование",
+    "error": "Ошибка",
+    "editProfile": "Редактировать профиль",
+    "name": "Имя",
+    "enterYourName": "Введите ваше имя",
+    "specialty": "Специальность",
+    "bio": "О себе",
+    "save": "Сохранить",
+    "learning": "Обучение",
+    "news": "Новости",
+    "medicalFaculty": "Медицинский\nфакультет",
+    "anatomyFaculty": "Анатомический\nфакультет",
+    "pharmacologyFaculty": "Фармакологический\nфакультет",
+    "videosWatched": "Просмотрено видео: {count} из {total}",
+    "watchMoreVideos": "Чтобы увеличить прогресс, смотрите больше обучающих видео"
 }

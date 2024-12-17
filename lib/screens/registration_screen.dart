@@ -3,17 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../providers/locale_provider.dart';
 import 'login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  final Locale currentLocale;
-  final Function(Locale) onLocaleChanged;
-
-  const RegistrationScreen({
-    Key? key, 
-    required this.currentLocale, 
-    required this.onLocaleChanged
-  }) : super(key: key);
+  const RegistrationScreen({super.key});
 
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
@@ -25,9 +19,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _confirmPasswordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  bool _isObscured = true;
   bool _isLoading = false;
-  bool _isEmailSent = false;
+  
+  void _toggleLanguage() {
+    final provider = LocaleProvider.of(context);
+    final newLocale = provider.locale.languageCode == 'ru' 
+        ? const Locale('en') 
+        : const Locale('ru');
+    provider.setLocale(newLocale);
+  }
 
   void _handleRegistration() async {
     // Validate inputs
@@ -55,7 +55,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       await userCredential.user?.sendEmailVerification();
 
       setState(() {
-        _isEmailSent = true;
         _isLoading = false;
       });
     } on FirebaseAuthException catch (e) {
@@ -77,28 +76,70 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       setState(() => _isLoading = false);
     }
   }
+  void _navigateToLogin() {
+    Navigator.of(context).pushReplacement(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => const LoginScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          // Анимация для уходящего экрана
+          var exitTween = Tween(begin: Offset.zero, end: const Offset(-0.3, 0.0))
+            .chain(CurveTween(curve: Curves.easeInOut));
+          var exitAnimation = secondaryAnimation.drive(exitTween);
+          
+          // Анимация для входящего экрана
+          var enterTween = Tween(begin: const Offset(1.0, 0.0), end: Offset.zero)
+            .chain(CurveTween(curve: Curves.easeOutQuart));
+          var enterAnimation = animation.drive(enterTween);
 
-  void _handleVerificationCheck() async {
-    User? user = _auth.currentUser;
-    
-    if (user != null) {
-      await user.reload();
-      
-      if (user.emailVerified) {
-        // Navigate to Login Screen
-        Navigator.of(context).pushReplacement(
-          CupertinoPageRoute(
-            builder: (_) => LoginScreen(
-              currentLocale: widget.currentLocale,
-              onLocaleChanged: widget.onLocaleChanged,
-            ),
-          )
-        );
-      } else {
-        _showErrorDialog(AppLocalizations.of(context)!.pleaseVerifyEmail);
-      }
-    }
+          // Анимации прозрачности
+          var fadeInAnimation = CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeOutQuart,
+          );
+          var fadeOutAnimation = CurvedAnimation(
+            parent: secondaryAnimation,
+            curve: Curves.easeInOut,
+          );
+
+          return Stack(
+            children: [
+              // Уходящий экран
+              SlideTransition(
+                position: exitAnimation,
+                child: FadeTransition(
+                  opacity: Tween(begin: 1.0, end: 0.0).animate(fadeOutAnimation),
+                  child: secondaryAnimation.value < 0.5 ? child : null,
+                ),
+              ),
+              // Входящий экран
+              SlideTransition(
+                position: enterAnimation,
+                child: FadeTransition(
+                  opacity: fadeInAnimation,
+                  child: animation.value > 0.5 ? child : null,
+                ),
+              ),
+            ],
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 700),
+        reverseTransitionDuration: const Duration(milliseconds: 700),
+      ),
+    );
   }
+  void _handleVerificationCheck() async {
+  User? user = _auth.currentUser;
+  
+  if (user != null && user.emailVerified) {
+    Navigator.of(context).pushReplacement(
+      CupertinoPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
+  } else {
+    _showErrorDialog(AppLocalizations.of(context)!.pleaseVerifyEmail);
+  }
+}
 
   void _showErrorDialog(String message) {
     showCupertinoDialog(
@@ -134,262 +175,245 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // If email verification is sent, show verification screen
-    if (_isEmailSent) {
-      return CupertinoPageScaffold(
-        backgroundColor: Color(0xFFF8F0E6),
-        navigationBar: CupertinoNavigationBar(
-          middle: Text(AppLocalizations.of(context)!.verifyEmail),
-          trailing: CupertinoButton(
-            padding: EdgeInsets.zero,
-            child: Text(widget.currentLocale.languageCode == 'en' ? 'RU' : 'EN'),
-            onPressed: () {
-              // Toggle between English and Russian
-              Locale newLocale = widget.currentLocale.languageCode == 'en'
-                  ? const Locale('ru')
-                  : const Locale('en');
-              widget.onLocaleChanged(newLocale);
-            },
-          ),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  CupertinoIcons.mail_solid, 
-                  size: 100, 
-                  color: Color(0xFF7A7170)
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  AppLocalizations.of(context)!.verifyYourEmail,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF7A7170),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  AppLocalizations.of(context)!.verificationEmailSent(_emailController.text.trim()),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: CupertinoColors.systemGrey,
-                  ),
-                ),
-                const SizedBox(height: 30),
-                CupertinoButton.filled(
-                  onPressed: _handleVerificationCheck,
-                  child: Text(AppLocalizations.of(context)!.iHaveVerifiedMyEmail),
-                ),
-                const SizedBox(height: 20),
-                CupertinoButton(
-                  child: Text(AppLocalizations.of(context)!.resendVerificationEmail),
-                  onPressed: () async {
-                    try {
-                      await _auth.currentUser?.sendEmailVerification();
-                      _showSuccessDialog(AppLocalizations.of(context)!.verificationEmailResent);
-                    } catch (e) {
-                      _showErrorDialog(AppLocalizations.of(context)!.failedToResendVerificationEmail);
-                    }
-                  },
-                )
-              ],
-            ),
-          ),
-        ),
-      );
-    }
-
-    // Original registration screen
     return CupertinoPageScaffold(
-      backgroundColor: Color(0xFFF8F0E6),
+      backgroundColor: const Color(0xFFF8F0E6),
       navigationBar: CupertinoNavigationBar(
-        middle: Text(AppLocalizations.of(context)!.createAccount),
+        backgroundColor: const Color(0xFFF8F0E6).withOpacity(0.7),
+        border: null,
+        leading: CupertinoButton(
+          padding: EdgeInsets.zero,
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Icon(
+            CupertinoIcons.back,
+            color: Color(0xFF7A7170),
+          ),
+        ),
         trailing: CupertinoButton(
           padding: EdgeInsets.zero,
-          child: Text(widget.currentLocale.languageCode == 'en' ? 'RU' : 'EN'),
-          onPressed: () {
-            // Toggle between English and Russian
-            Locale newLocale = widget.currentLocale.languageCode == 'en'
-                ? const Locale(' ru')
-                : const Locale('en');
-            widget.onLocaleChanged(newLocale);
-          },
-        ),
-      ),
-      child: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 80),
-                
-                Text(
-                  AppLocalizations.of(context)!.createYourAccount,
-                  style: TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF7A7170),
-                  ),
-                ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.5),
-                
-                const SizedBox(height: 10),
-                
-                Text(
-                  AppLocalizations.of(context)!.signUpToContinue,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: CupertinoColors.systemGrey,
-                  ),
-                ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.5),
-                
-                const SizedBox(height: 50),
-                
-                // Email Input
-                _buildInputField(
-                  controller: _emailController,
-                  placeholder: AppLocalizations.of(context)!.email,
-                  prefixIcon: CupertinoIcons.mail,
-                ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.5),
-                
-                const SizedBox(height: 20),
-                
-                // Password Input
-                _buildPasswordField(),
-                
-                const SizedBox(height: 20),
-                
-                // Confirm Password Input
-                _buildConfirmPasswordField(),
-                
-                const SizedBox(height: 30),
-                
-                // Register Button
-                _buildRegisterButton(),
-                
-                const SizedBox(height: 20),
-                
-                // Login Option
-                Center(
-                  child: CupertinoButton(
-                    child: Text(
-                      AppLocalizations.of(context)!.alreadyHaveAnAccount,
-                      style: TextStyle(color: Color(0xFF7A7170)),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ),
-              ],
+          onPressed: _toggleLanguage,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: const Color(0xFF7A7170).withOpacity(0.1),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Text(
+              LocaleProvider.of(context).locale.languageCode.toUpperCase() == 'RU' ? 'EN' : 'RU',
+              style: const TextStyle(
+                color: Color(0xFF7A7170),
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ),
       ),
-    );
-  }
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Positioned.fill(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Spacer(flex: 2),
+                  
+                  // Лого
+                  Center(
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final logoSize = constraints.maxWidth * 0.8;
+                        return Image.asset(
+                          'assets/molodost.png',
+                          width: logoSize,
+                          height: logoSize/5,
+                        );
+                      },
+                    ),
+                  ).animate()
+                    .fadeIn(
+                      duration: 1200.ms,
+                      curve: Curves.easeOutCubic,
+                    )
+                    .scaleXY(
+                      begin: 0.8,
+                      end: 1.0,
+                      duration: 1200.ms,
+                      curve: Curves.easeOutCubic,
+                    ),
 
-  Widget _buildInputField({
-    required TextEditingController controller,
-    required String placeholder,
-    required IconData prefixIcon,
-    bool isPassword = false,
-  }) {
-    return CupertinoTextField(
-      controller: controller,
-      placeholder: placeholder,
-      prefix: Padding(
-        padding: const EdgeInsets.only(left: 10),
-        child: Icon(prefixIcon, color: CupertinoColors.systemGrey),
-      ),
-      obscureText: isPassword ? _isObscured : false,
-      style: const TextStyle(fontSize: 16),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-    );
-  }
+                  const SizedBox(height: 32),
 
-  Widget _buildPasswordField() {
-    return CupertinoTextField(
-      controller: _passwordController,
-      placeholder: AppLocalizations.of(context)!.password,
-      prefix: const Padding(
-        padding: EdgeInsets.only(left: 10),
-        child: Icon(CupertinoIcons.lock, color: CupertinoColors.systemGrey),
-      ),
-      suffix: Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: GestureDetector(
-          onTap: () {
-            setState(() {
-              _isObscured = !_isObscured;
-            });
-          },
-          child: Icon(
-            _isObscured 
-              ? CupertinoIcons.eye_slash 
-              : CupertinoIcons.eye,
-            color: CupertinoColors.systemGrey,
-          ),
-        ),
-      ),
-      obscureText: _isObscured,
-      style: const TextStyle(fontSize: 16),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-    ).animate().fadeIn(duration: 600.ms).slideX(begin: 0.5);
-  }
+                  // Заголовок
+                  Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.createAccount,
+                      style: const TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF7A7170),
+                      ),
+                    ),
+                  ).animate()
+                    .fadeIn(
+                      duration: 800.ms,
+                      delay: 400.ms,
+                      curve: Curves.easeOutCubic,
+                    )
+                    .slideX(
+                      begin: -0.3,
+                      curve: Curves.easeOutCubic,
+                    ),
 
-  Widget _buildConfirmPasswordField() {
-    return CupertinoTextField(
-      controller: _confirmPasswordController,
-      placeholder: AppLocalizations.of(context)!.confirmPassword,
-      prefix: const Padding(
-        padding: EdgeInsets.only(left: 10),
-        child: Icon(CupertinoIcons.lock, color: CupertinoColors.systemGrey),
-      ),
-      suffix: Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: GestureDetector(
-          onTap: () {
-            setState(() {
-              _isObscured = !_isObscured;
-            });
-          },
-          child: Icon(
-            _isObscured 
-              ? CupertinoIcons.eye_slash 
-              : CupertinoIcons.eye,
-            color: CupertinoColors.systemGrey,
-          ),
-        ),
-      ),
-      obscureText: _isObscured,
-      style: const TextStyle(fontSize: 16),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-    ).animate().fadeIn(duration: 600.ms).slideX(begin: 0.5);
-  }
+        const SizedBox(height: 10),
 
-  Widget _buildRegisterButton() {
-    return CupertinoButton.filled(
-      borderRadius: BorderRadius.circular(12),
-      onPressed: _handleRegistration,
-      child: Center(
-        child: _isLoading
-            ? const CupertinoActivityIndicator(color: CupertinoColors.white)
-            : Text(
-                AppLocalizations.of(context)!.register,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                  // Подзаголовок
+                  Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.signUpToContinue,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: const Color(0xFF7A7170).withOpacity(0.8),
+                      ),
+                    ),
+                  ).animate()
+                    .fadeIn(
+                      duration: 800.ms,
+                      delay: 600.ms,
+                      curve: Curves.easeOutCubic,
+                    )
+                    .slideX(
+                      begin: -0.3,
+                      curve: Curves.easeOutCubic,
+                    ),
+
+                  const Spacer(),
+
+                  // Поля ввода
+                  CupertinoTextField(
+                    controller: _emailController,
+                    placeholder: AppLocalizations.of(context)!.email,
+                    keyboardType: TextInputType.emailAddress,
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: CupertinoColors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.05),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                  ).animate()
+                    .fadeIn(
+                      duration: 800.ms,
+                      delay: 800.ms,
+                      curve: Curves.easeOutCubic,
+                    )
+                    .slideX(
+                      begin: -0.3,
+                      curve: Curves.easeOutCubic,
+                    ),
+
+                  const SizedBox(height: 16),
+
+                  CupertinoTextField(
+                    controller: _passwordController,
+                    placeholder: AppLocalizations.of(context)!.password,
+                    obscureText: true,
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: CupertinoColors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.05),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                  ).animate()
+                    .fadeIn(
+                      duration: 800.ms,
+                      delay: 1000.ms,
+                      curve: Curves.easeOutCubic,
+                    )
+                    .slideX(
+                      begin: -0.3,
+                      curve: Curves.easeOutCubic,
+                    ),
+
+                  const SizedBox(height: 16),
+
+                  CupertinoTextField(
+                    controller: _confirmPasswordController,
+                    placeholder: AppLocalizations.of(context)!.confirmPassword,
+                    obscureText: true,
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: CupertinoColors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.05),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                  ).animate()
+                    .fadeIn(
+                      duration: 800.ms,
+                      delay: 1200.ms,
+                      curve: Curves.easeOutCubic,
+                    )
+                    .slideX(
+                      begin: -0.3,
+                      curve: Curves.easeOutCubic,
+                    ),
+
+                  const SizedBox(height: 32),
+
+                  // Кнопка регистрации
+                  SizedBox(
+                    width: double.infinity,
+                    child: CupertinoButton(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      color: const Color(0xFF7A7170),
+                      borderRadius: BorderRadius.circular(12),
+                      onPressed: _isLoading ? null : _handleRegistration,
+                      child: _isLoading
+                          ? const CupertinoActivityIndicator(color: CupertinoColors.white)
+                          : Text(
+                              AppLocalizations.of(context)!.register,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                    ),
+                  ).animate()
+                    .fadeIn(
+                      duration: 800.ms,
+                      delay: 1400.ms,
+                      curve: Curves.easeOutCubic,
+                    )
+                    .slideY(
+                      begin: 0.3,
+                      curve: Curves.easeOutCubic,
+                    ),
+
+                  const Spacer(flex: 2),
+                ],
               ),
+            ),
+          ),
+        ],
       ),
-    ).animate().fadeIn(duration: 600.ms).scaleXY(begin: 0.8);
+    );
   }
 }

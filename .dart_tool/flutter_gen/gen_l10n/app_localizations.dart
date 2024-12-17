@@ -98,7 +98,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeBack.
   ///
   /// In en, this message translates to:
-  /// **'Welcome Back to MoloLearn'**
+  /// **'Welcome to Mololearn'**
   String get welcomeBack;
 
   /// No description provided for @signInToContinue.
@@ -122,7 +122,7 @@ abstract class AppLocalizations {
   /// No description provided for @login.
   ///
   /// In en, this message translates to:
-  /// **'Login'**
+  /// **'Log in'**
   String get login;
 
   /// No description provided for @forgotPassword.
@@ -322,6 +322,390 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Success'**
   String get success;
+
+  /// No description provided for @coursesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Courses'**
+  String get coursesTab;
+
+  /// No description provided for @feedTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Feed'**
+  String get feedTab;
+
+  /// No description provided for @profileTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTab;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @enterYourSpecialty.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your specialty'**
+  String get enterYourSpecialty;
+
+  /// No description provided for @writeAboutYourself.
+  ///
+  /// In en, this message translates to:
+  /// **'Write something about yourself'**
+  String get writeAboutYourself;
+
+  /// No description provided for @coursesCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Courses\nCompleted'**
+  String get coursesCompleted;
+
+  /// No description provided for @overallProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Overall\nProgress'**
+  String get overallProgress;
+
+  /// No description provided for @certificatesEarned.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificates\nEarned'**
+  String get certificatesEarned;
+
+  /// No description provided for @recentAchievements.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Achievements'**
+  String get recentAchievements;
+
+  /// No description provided for @completeFirstCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your first course to earn achievements!'**
+  String get completeFirstCourse;
+
+  /// No description provided for @myCourses.
+  ///
+  /// In en, this message translates to:
+  /// **'My Courses'**
+  String get myCourses;
+
+  /// No description provided for @cosmetologyBasics.
+  ///
+  /// In en, this message translates to:
+  /// **'Cosmetology Basics'**
+  String get cosmetologyBasics;
+
+  /// No description provided for @cosmetologyDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fundamental techniques in modern cosmetology'**
+  String get cosmetologyDesc;
+
+  /// No description provided for @medicalAnatomy.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical Anatomy'**
+  String get medicalAnatomy;
+
+  /// No description provided for @anatomyDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed human anatomy for medical professionals'**
+  String get anatomyDesc;
+
+  /// No description provided for @category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// No description provided for @progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get progress;
+
+  /// No description provided for @latestNews.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest News'**
+  String get latestNews;
+
+  /// No description provided for @newAdvances.
+  ///
+  /// In en, this message translates to:
+  /// **'New Advances in Cosmetology'**
+  String get newAdvances;
+
+  /// No description provided for @advancesDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover the latest trends and techniques in the field.'**
+  String get advancesDesc;
+
+  /// No description provided for @healthTips.
+  ///
+  /// In en, this message translates to:
+  /// **'Health Tips from Experts'**
+  String get healthTips;
+
+  /// No description provided for @tipsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn how to maintain a healthy lifestyle with expert advice.'**
+  String get tipsDesc;
+
+  /// Label for current courses section in profile
+  ///
+  /// In en, this message translates to:
+  /// **'Current Courses'**
+  String get currentCourses;
+
+  /// Label for achievements section in profile
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get achievements;
+
+  /// Achievement for completing first course
+  ///
+  /// In en, this message translates to:
+  /// **'First Course Completed'**
+  String get achievementFirstCourse;
+
+  /// Achievement for getting perfect score
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect Score'**
+  String get achievementPerfectScore;
+
+  /// Achievement for early participation
+  ///
+  /// In en, this message translates to:
+  /// **'Early Bird'**
+  String get achievementEarlyBird;
+
+  /// Label for logout button
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get logout;
+
+  /// No description provided for @editYourProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Your Profile'**
+  String get editYourProfile;
+
+  /// No description provided for @photoUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo updated successfully'**
+  String get photoUpdated;
+
+  /// No description provided for @failedToUpdatePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update photo'**
+  String get failedToUpdatePhoto;
+
+  /// No description provided for @choosePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose photo'**
+  String get choosePhoto;
+
+  /// No description provided for @takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take photo'**
+  String get takePhoto;
+
+  /// No description provided for @removePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get removePhoto;
+
+  /// No description provided for @personalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get personalInfo;
+
+  /// No description provided for @aboutMe.
+  ///
+  /// In en, this message translates to:
+  /// **'About Me'**
+  String get aboutMe;
+
+  /// No description provided for @memberSince.
+  ///
+  /// In en, this message translates to:
+  /// **'Member since {date}'**
+  String memberSince(Object date);
+
+  /// No description provided for @updateProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Profile'**
+  String get updateProfile;
+
+  /// No description provided for @profileUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated successfully'**
+  String get profileUpdated;
+
+  /// No description provided for @failedToUpdateProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update profile'**
+  String get failedToUpdateProfile;
+
+  /// No description provided for @discardChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard changes?'**
+  String get discardChanges;
+
+  /// No description provided for @discardChangesMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to discard your changes?'**
+  String get discardChangesMessage;
+
+  /// No description provided for @discard.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get discard;
+
+  /// No description provided for @keep.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep editing'**
+  String get keep;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfile;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @enterYourName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get enterYourName;
+
+  /// No description provided for @specialty.
+  ///
+  /// In en, this message translates to:
+  /// **'Specialty'**
+  String get specialty;
+
+  /// No description provided for @bio.
+  ///
+  /// In en, this message translates to:
+  /// **'Bio'**
+  String get bio;
+
+  /// No description provided for @logoutConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Logout'**
+  String get logoutConfirmTitle;
+
+  /// No description provided for @logoutConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get logoutConfirmMessage;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @learning.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning'**
+  String get learning;
+
+  /// No description provided for @news.
+  ///
+  /// In en, this message translates to:
+  /// **'News'**
+  String get news;
+
+  /// No description provided for @medicalFaculty.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical\nFaculty'**
+  String get medicalFaculty;
+
+  /// No description provided for @anatomyFaculty.
+  ///
+  /// In en, this message translates to:
+  /// **'Anatomy\nFaculty'**
+  String get anatomyFaculty;
+
+  /// No description provided for @pharmacologyFaculty.
+  ///
+  /// In en, this message translates to:
+  /// **'Pharmacology\nFaculty'**
+  String get pharmacologyFaculty;
+
+  /// No description provided for @videosWatched.
+  ///
+  /// In en, this message translates to:
+  /// **'Videos watched: {count} of {total}'**
+  String videosWatched(Object count, Object total);
+
+  /// No description provided for @watchMoreVideos.
+  ///
+  /// In en, this message translates to:
+  /// **'To increase progress, watch more educational videos'**
+  String get watchMoreVideos;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
