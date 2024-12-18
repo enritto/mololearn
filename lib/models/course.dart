@@ -1,5 +1,4 @@
 import 'dart:ui';
-import '../screens/main_screen.dart';
 import '../utils/app_colors.dart';
 
 class Course {

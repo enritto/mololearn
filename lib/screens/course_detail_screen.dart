@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../models/course.dart';
-import '../screens/main_screen.dart';
 import '../utils/app_colors.dart';
 class CourseDetailScreen extends StatelessWidget {
   final Course course;

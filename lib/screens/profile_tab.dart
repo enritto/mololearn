@@ -1,13 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../providers/locale_provider.dart';
-import '../utils/app_colors.dart';
 import '../models/user_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../screens/login_screen.dart';
-import '../screens/edit_profile_screen.dart';
 import 'dart:ui';
 import '../core/app_typography.dart';
 
