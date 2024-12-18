@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../models/course.dart';
-
+import '../screens/main_screen.dart';
+import '../utils/app_colors.dart';
 class CourseDetailScreen extends StatelessWidget {
   final Course course;
 
@@ -10,14 +11,14 @@ class CourseDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: const Color(0xFFF8F0E6),
+      backgroundColor: const Color(0xFFF0F0F3),
       navigationBar: CupertinoNavigationBar(
-        backgroundColor: const Color(0xFFF8F0E6).withOpacity(0.7),
+        backgroundColor: const Color(0xFFF0F0F3).withOpacity(0.7),
         border: null,
         middle: Text(
           course.title,
           style: const TextStyle(
-            color: Color(0xFF7A7170),
+            color: AppColors.textPrimary,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -41,9 +42,9 @@ class CourseDetailScreen extends StatelessWidget {
               const SizedBox(height: 16),
               Text(
                 course.description,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 16,
-                  color: Color(0xFF7A7170),
+                  color: AppColors.textPrimary,
                 ),
               ),
               const SizedBox(height: 24),
@@ -71,10 +72,10 @@ class CourseDetailScreen extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF7A7170),
+            color: AppColors.textPrimary,
           ),
         ),
         const SizedBox(height: 8),
@@ -85,15 +86,15 @@ class CourseDetailScreen extends StatelessWidget {
               const Icon(
                 CupertinoIcons.circle_fill,
                 size: 8,
-                color: Color(0xFF7A7170),
+                color: AppColors.textPrimary,
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   item,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF7A7170),
+                    color: AppColors.textPrimary,
                   ),
                 ),
               ),

@@ -9,111 +9,104 @@ class DashboardTab extends StatelessWidget {
   final List<Course> medicalCourses = [
     Course(
       id: '1',
-      title: 'Основы кардиологии',
-      description: 'Комплексный курс по основам кардиологии для начинающих специалистов',
-      duration: '12 недель',
+      title: 'Изучение консультативного приема в клинике',
+      description: 'Курс о первичной консультации от Лесниковой АШ',
+      duration: '1 неделя',
       materials: [
-        'Анатомия сердца и сосудистой системы',
-        'Основы ЭКГ диагностики',
-        'Нарушения ритма сердца',
-        'Ишемическая болезнь сердца',
-        'Артериальная гипертензия',
-        'Сердечная недостаточность',
-        'Неотложные состояния в кардиологии',
-        'Профилактическая кардиология'
+        'Статья о первичной консультации',
+        'Видеоролик с первичной консультации пациента',
+        'Памятка с картинками',
       ],
       tests: [
         Test(
-          title: 'Анатомия сердца',
-          questions: 20,
-          timeLimit: 30,
-        ),
-        Test(
-          title: 'ЭКГ диагностика',
-          questions: 25,
-          timeLimit: 40,
-        ),
-        Test(
-          title: 'Нарушения ритма',
-          questions: 15,
-          timeLimit: 25,
+          title: 'Тестирование',
+          questions: 10,
+          timeLimit: 15,
         ),
       ],
-      exams: [
-        Exam(
-          title: 'Промежуточный экзамен',
-          questions: 40,
-          timeLimit: 60,
-          passingScore: 75,
-        ),
-        Exam(
-          title: 'Итоговый экзамен',
-          questions: 80,
-          timeLimit: 120,
-          passingScore: 80,
-        ),
-      ],
-      category: 'Кардиология',
+      exams: [],
+      category: 'Врачи',
       progress: 0.0,
-      imageUrl: 'assets/images/cardiology.jpg',
+      imageUrl: 'assets/images/consultation.jpg',
     ),
     Course(
       id: '2',
-      title: 'Анатомия человека',
-      description: 'Фундаментальный курс по анатомии человека с практическими занятиями',
-      duration: '16 недель',
+      title: 'Изучение консультативного приема 3.0 (Дерматология)',
+      description: 'Курс по дерматологии с клиническими рекомендациями',
+      duration: '2 недели',
       materials: [
-        'Введение в анатомию',
-        'Опорно-двигательный аппарат',
-        'Миология',
-        'Спланхнология',
-        'Сердечно-сосудистая система',
-        'Нервная система',
-        'Органы чувств',
-        'Эндокринная система',
-        'Лимфатическая система',
-        'Топографическая анатомия'
+        'Клинические рекомендации',
+        'Обучающая презентация по акне',
+        'Обучающая презентация по розацеа',
+        'Видео с консультации по акне/розацеа',
+        'Протокол консультирования акне и розацеа (4 файла)',
       ],
       tests: [
         Test(
-          title: 'Опорно-двигательный аппарат',
-          questions: 30,
-          timeLimit: 45,
-        ),
-        Test(
-          title: 'Внутренние органы',
-          questions: 35,
-          timeLimit: 50,
-        ),
-        Test(
-          title: 'Нервная система',
-          questions: 25,
-          timeLimit: 40,
+          title: 'Тестирование',
+          questions: 15,
+          timeLimit: 20,
         ),
       ],
-      exams: [
-        Exam(
-          title: 'Промежуточный экзамен 1',
-          questions: 50,
-          timeLimit: 75,
-          passingScore: 70,
-        ),
-        Exam(
-          title: 'Промежуточный экзамен 2',
-          questions: 50,
-          timeLimit: 75,
-          passingScore: 70,
-        ),
-        Exam(
-          title: 'Итоговый экзамен',
-          questions: 100,
-          timeLimit: 150,
-          passingScore: 75,
-        ),
-      ],
-      category: 'Анатомия',
+      exams: [],
+      category: 'Врачи',
       progress: 0.0,
-      imageUrl: 'assets/images/anatomy.jpg',
+      imageUrl: 'assets/images/dermatology.jpg',
+    ),
+    Course(
+      id: '3',
+      title: 'Аппаратные методики',
+      description: 'Курс по аппаратным методикам',
+      duration: '3 недели',
+      materials: [
+        'Candela Nordlys (обучающее видео и тестирование)',
+        'DEKA СО-2 лазер (обучающее видео и тестирование)',
+        'InMode Morpheus-8 (обучающее видео и тестирование)',
+        'InMode Diolaze (обучающее видео и тестирование)',
+        'InMode Forma (обучающее видео и тестирование)',
+        'Ultraformer MPT-4 (обучающее видео и тестирование)',
+        'Криолифтинг (обучающее видео и тестирование)',
+        'Микротоки (обучающее видео и тестирование)',
+        'ФДТ Revixan (обучающее видео и тестирование)',
+      ],
+      tests: [],
+      exams: [],
+      category: 'Врачи',
+      progress: 0.0,
+      imageUrl: 'assets/images/hardware_techniques.jpg',
+    ),
+    Course(
+      id: '4',
+      title: 'Инъекционные методики',
+      description: 'Курс по инъекционным методикам',
+      duration: '2 недели',
+      materials: [
+        'БТА',
+        'Филлеры',
+        'Коллаген Стимуляторы',
+        'Биоревитализанты',
+        'Плазмотерапия',
+      ],
+      tests: [],
+      exams: [],
+      category: 'Врачи',
+      progress: 0.0,
+      imageUrl: 'assets/images/injection_techniques.jpg',
+    ),
+    Course(
+      id: '5',
+      title: 'Уходо����ые и эстетические процедуры',
+      description: 'Курс по уходовым и эстетическим процедурам',
+      duration: '2 недели',
+      materials: [
+        'Пилинги',
+        'Чистка лица',
+      ],
+      tests: [],
+      exams: [],
+      category: 'Врачи',
+      progress: 0.0,
+      imageUrl: 'assets/images/cosmetic_procedures.jpg',
     ),
   ];
 
@@ -128,12 +121,39 @@ class DashboardTab extends StatelessWidget {
     );
   }
 
+  // Неоморфное оформление
+  BoxDecoration _neomorphicDecoration({
+    BorderRadius? borderRadius,
+    bool isPressed = false,
+  }) {
+    return BoxDecoration(
+      color: const Color(0xFFF0F0F3),
+      borderRadius: borderRadius ?? BorderRadius.circular(16),
+      boxShadow: isPressed
+          ? null
+          : [
+              BoxShadow(
+                color: const Color(0xFFA0A0A4).withOpacity(0.2),
+                offset: const Offset(4, 6),
+                blurRadius: 8,
+                spreadRadius: 2,
+              ),
+              BoxShadow(
+                color: Colors.white.withOpacity(0.7),
+                offset: const Offset(-4, -6),
+                blurRadius: 8,
+                spreadRadius: 2,
+              ),
+            ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: const Color(0xFFF8F0E6),
+      backgroundColor: const Color(0xFFF0F0F3),
       navigationBar: CupertinoNavigationBar(
-        backgroundColor: const Color(0xFFF8F0E6).withOpacity(0.7),
+        backgroundColor: const Color(0xFFF0F0F3).withOpacity(0.7),
         border: null,
         middle: Text(
           AppLocalizations.of(context)!.myCourses,
@@ -184,16 +204,8 @@ class DashboardTab extends StatelessWidget {
     return GestureDetector(
       onTap: () => _navigateToCourse(context, course),
       child: Container(
-        decoration: BoxDecoration(
-          color: CupertinoColors.white.withOpacity(0.8),
+        decoration: _neomorphicDecoration(
           borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF7A7170).withOpacity(0.1),
-              blurRadius: 10,
-              spreadRadius: -5,
-            ),
-          ],
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),

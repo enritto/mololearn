@@ -1,3 +1,7 @@
+import 'dart:ui';
+import '../screens/main_screen.dart';
+import '../utils/app_colors.dart';
+
 class Course {
   final String id;
   final String title;
@@ -22,6 +26,8 @@ class Course {
     this.progress = 0.0,
     this.imageUrl,
   });
+
+  Color get titleColor => AppColors.textPrimary;
 }
 
 class Test {
